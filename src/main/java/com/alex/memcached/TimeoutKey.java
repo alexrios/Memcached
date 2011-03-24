@@ -16,10 +16,10 @@ public class TimeoutKey {
 		// Five seconds timeout
 		Cache.getInstance().set("words", 5, words);
 
-		System.out.println("Before cache timeout: "
-				+ (Cache.getInstance().get("words") != null));
+		System.out.println("Before cache timeout: ");
+		Cache.getInstance().get("words");
 		Thread.sleep(6000);
-		System.out.println("After cache timeout: "
-				+ (Cache.getInstance().get("words") != null));
+		System.out.println("After cache timeout: ");
+		Cache.getInstance().get("words");
 	}
 }
