@@ -1,0 +1,16 @@
+<ivy-module version="2.0">
+	<info organisation="memcached" module="memcached" />
+
+	<configurations>
+		 <conf name="default" description="dependencies used for compile" />
+		<conf name="test" description="dependencies used for tests"
+			visibility="public" />
+	</configurations>
+
+	<dependencies>
+		<!-- Default dependencies -->
+		 <dependency org="spy" name="memcached" rev="2.5" conf="default"/>
+		<!-- Test dependencies -->
+		<dependency org="junit" name="junit" rev="4.8.2" conf="test->default" />
+	</dependencies>
+</ivy-module>
