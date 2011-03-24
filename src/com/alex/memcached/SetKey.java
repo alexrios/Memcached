@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SetKey {
-	
+
 	public static void main(String[] args) throws IOException {
-		List<String> lista = new ArrayList<String>();
-		lista.add("Primeiro");
-		lista.add("Segundo");
-		lista.add("Terceiro");
-		
-		Cache.client.set("palavras", 3600, lista);
+		List<String> words = new ArrayList<String>();
+		words.add("first");
+		words.add("second");
+		words.add("third");
+
+		Cache.getInstance().set("words", 3600, words);
 	}
 }

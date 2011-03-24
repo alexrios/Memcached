@@ -5,17 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TimeoutKey {
-	
-	public static void main(String[] args) throws IOException, InterruptedException {
-		List<String> lista = new ArrayList<String>();
-		lista.add("Primeiro");
-		lista.add("Segundo");
-		lista.add("Terceiro");
-		
-		Cache.client.set("palavras", 5, lista);
-		
-		System.out.println("Antes do Timeout: " + (Cache.client.get("palavras") != null) );
+
+	public static void main(String[] args) throws IOException,
+			InterruptedException {
+		List<String> words = new ArrayList<String>();
+		words.add("first");
+		words.add("second");
+		words.add("third");
+
+		// Five seconds timeout
+		Cache.getInstance().set("words", 5, words);
+
+		System.out.println("Before cache timeout: "
+				+ (Cache.getInstance().get("words") != null));
 		Thread.sleep(6000);
-		System.out.println("Depois do Timeout: " + (Cache.client.get("palavras") != null) );
+		System.out.println("After cache timeout: "
+				+ (Cache.getInstance().get("words") != null));
 	}
 }

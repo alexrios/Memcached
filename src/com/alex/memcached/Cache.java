@@ -6,9 +6,47 @@ import java.net.InetSocketAddress;
 import net.spy.memcached.MemcachedClient;
 
 public class Cache {
-	public static MemcachedClient client;
-	
-	public static void main(String[] args) throws IOException {
-		 client = new MemcachedClient(new InetSocketAddress("127.0.0.1", 11211));
+	private static final String NAMESPACE = "CUSTOM:NAMESPACE";
+	private static Cache instance = null;
+	private static MemcachedClient client;
+
+	private Cache() {
+		try {
+			client = new MemcachedClient(new InetSocketAddress("127.0.0.1",
+					11211));
+		} catch (IOException io) {
+			io.printStackTrace();
+		}
+	}
+
+	public static synchronized Cache getInstance() {
+		System.out.println("Instance: " + instance);
+		if (instance == null) {
+			System.out.println("Creating a new instance");
+			instance = new Cache();
+		}
+		return instance;
+	}
+
+	public void set(String key, int timeout, final Object value) {
+		getCache().set(NAMESPACE + key, timeout, value);
+	}
+
+	public Object get(String key) {
+		Object cachedObject = getCache().get(NAMESPACE + key);
+		if (cachedObject == null) {
+			System.out.println("Cache MISS for KEY: " + key);
+		} else {
+			System.out.println("Cache HIT for KEY: " + key);
+		}
+		return cachedObject;
+	}
+
+	public Object delete(String key) {
+		return getCache().delete(NAMESPACE + key);
+	}
+
+	public MemcachedClient getCache() {
+		return client;
 	}
 }
