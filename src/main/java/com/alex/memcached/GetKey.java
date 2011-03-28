@@ -8,8 +8,8 @@ public class GetKey {
 	public static void main(String[] args) throws IOException {
 		Object value = Cache.getInstance().get("words");
 		List<String> words = (List<String>) value;
-		
-		if(words.isEmpty()){
+
+		if (words != null) {
 			for (String word : words) {
 				System.out.println(word);
 			}
