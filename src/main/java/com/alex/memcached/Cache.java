@@ -20,10 +20,11 @@ public class Cache {
 	}
 
 	public static synchronized Cache getInstance() {
-		System.out.println("Instance: " + instance);
 		if (instance == null) {
 			System.out.println("Creating a new instance");
 			instance = new Cache();
+		}else{
+			System.out.println("Reusing Instance: " + instance);
 		}
 		return instance;
 	}
