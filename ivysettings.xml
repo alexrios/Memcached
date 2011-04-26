@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ivysettings>
- <settings defaultResolver="maven-chain" />
- <resolvers>
-   <ibiblio name="maven" />
-   <ibiblio name="Spy Memcached" root="http://bleu.west.spy.net/~dustin/m2repo/" m2compatible="true" />
-   <chain name="maven-chain" returnFirst="true">
-    <resolver ref="maven" />
-    <resolver ref="Spy Memcached" />
-   </chain>
- </resolvers>
+	<settings defaultResolver="maven-chain" />
+	<resolvers>
+		<ibiblio name="ibiblio" m2compatible="true" />
+		<ibiblio name="Spy Memcached" root="http://bleu.west.spy.net/~dustin/m2repo/" m2compatible="true" />
+		<chain name="maven-chain">
+			<resolver ref="ibiblio" />
+			<resolver ref="Spy Memcached" />
+		</chain>
+	</resolvers>
 </ivysettings>
